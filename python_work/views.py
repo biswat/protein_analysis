@@ -3,7 +3,7 @@ from tabulate import tabulate
 import requests
 import sys
 from subprocess import run,PIPE
-from . import script
+from . import main
 import pandas as pd
 import json
 # from script import prt
@@ -35,9 +35,9 @@ def external(request):
     out3 = json.loads(json_records)
 
 
-    out =  script.protein(inp)
-    out2 = script.protein2(inp)
-    out4 = script.protein3(inp)
+    out =  main.protein(inp)
+    out2 = main.protein2(inp)
+    out4 = main.protein3(inp)
     #out5 = script.protein4(inp) 
 
     
