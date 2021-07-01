@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+    <head>
+
+    </head>
+
+    <body>
+        <p>I am Biswajit Dash</p>      
+        <button onclick="location.href='{% url 'script' %}'">Data</button> <hr>
+        {% if data%}
+
+        {{data }}
+
+        {% endif %}
+
+        <form action="/external" method="POST">
+        
+            {% csrf_token %}
+            Input Text:
+            <textarea name="param" id="textar" cols="30" rows="10"></textarea><br><br>
+            <!-- {{ data_external }} <br><br> -->
+            <input type="submit" value="Get_Data">
+            <br><br>
+            <div>
+                {{data1}}
+            </div>
+             <br>
+            <div>
+                {{data2}}
+            </div>
+            <br>
+            <div>
+              {{data4}}
+            </div>
+            <br>
+            <div>
+              {{data5}}
+            </div>
+            <br>
+            <div>
+                <table class="table table-dark table-striped">
+                    <thead>
+                      <tr>
+                        <th>Amino Acid</th>
+                        <th>Number</th>
+                        <th>Percentage</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    <!-- jinja2 Technique -->
+                    {% if data3 %}  
+                    {% for i in data3 %}
+                      <tr>
+                        <td>{{i.Amino_acid}}</td>
+                        <td>{{i.Number_in_seq}}</td>
+                        <td>{{i.Percentage}}</td>
+                      </tr>
+                    {% endfor %}
+                    {% endif %}
+                    </tbody>
+                  </table>
+            </div>
+
+        </form>
+
+    </body>
+</html>
