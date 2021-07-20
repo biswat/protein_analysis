@@ -1,66 +1,117 @@
 <!DOCTYPE html>
     <head>
-
+        <title>Protein Analysis Tool</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap" rel="stylesheet">
     </head>
+    <style>
+        body{
+            font-family: 'Source Sans Pro', sans-serif;
+            background: url("bg.png");
+        }
+
+        .container{
+            background: rgba(255, 255, 255, 0.671);
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 14px );
+            -webkit-backdrop-filter: blur( 14px );
+            border-radius: 10px;
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+        }
+
+        #input-button{
+            border: 4px solid #02da63;
+            border-radius: 30px;
+            padding: 12px 40px;
+            display: inline-block;
+            font-size: 20px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: inset 0 0 0 0 #02d85b;
+            -webkit-transition: ease-out 0.7s;
+            -moz-transition: ease-out 0.7s;
+            transition: ease-out 0.7s;
+            
+        }
+
+        #input-button:hover{
+            box-shadow: inset 400px 0 0 0 #63cbc4;
+                
+        }
+
+        textarea{
+            border-radius: 20px;
+        }
+
+    </style>
 
     <body>
-        <p>I am Biswajit Dash</p>      
-        <button onclick="location.href='{% url 'script' %}'">Data</button> <hr>
-        {% if data%}
+        <div class="container">
 
-        {{data }}
-
-        {% endif %}
-
-        <form action="/external" method="POST">
-        
-            {% csrf_token %}
-            Input Text:
-            <textarea name="param" id="textar" cols="30" rows="10"></textarea><br><br>
-            <!-- {{ data_external }} <br><br> -->
-            <input type="submit" value="Get_Data">
-            <br><br>
-            <div>
-                {{data1}}
-            </div>
-             <br>
-            <div>
-                {{data2}}
-            </div>
+            <h1>I am Biswajit Dash</h1>      
+            <button id="input-button" onclick="location.href='{% url 'script' %}'">Data</button> 
+            <hr>
+            {% if data%}
             <br>
-            <div>
-              {{data4}}
-            </div>
+            {{data }}
             <br>
-            <div>
-              {{data5}}
-            </div>
+            {% endif %}
             <br>
-            <div>
-                <table class="table table-dark table-striped">
-                    <thead>
-                      <tr>
-                        <th>Amino Acid</th>
-                        <th>Number</th>
-                        <th>Percentage</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <!-- jinja2 Technique -->
-                    {% if data3 %}  
-                    {% for i in data3 %}
-                      <tr>
-                        <td>{{i.Amino_acid}}</td>
-                        <td>{{i.Number_in_seq}}</td>
-                        <td>{{i.Percentage}}</td>
-                      </tr>
-                    {% endfor %}
-                    {% endif %}
-                    </tbody>
-                  </table>
-            </div>
+            <form action="/external" method="POST">
+                
+                {% csrf_token %}
+                <br>
+                <h4>Input Text:</h4>
+                
+                <textarea name="param" id="textar" cols="50" rows="10"></textarea><br><br>
+                <!-- {{ data_external }} <br><br> -->
+                <input id="input-button" type="submit" value="Get_Data">
+                <br><br>
+                <div>
+                    {{data1}}
+                </div>
+                <br>
+                <div>
+                    {{data2}}
+                </div>
+                <br>
+                <div>
+                    {{data4}}
+                </div>
+                <br>
+                <div>
+                    {{data5}}
+                </div>
+                <br>
+                <div>
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>Amino Acid</th>
+                                <th>Number</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- jinja2 Technique -->
+                            {% if data3 %}  
+                            {% for i in data3 %}
+                            <tr>
+                                <td>{{i.Amino_acid}}</td>
+                                <td>{{i.Number_in_seq}}</td>
+                                <td>{{i.Percentage}}</td>
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+                
+            </form>
+        </div>
+            
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
-        </form>
 
     </body>
 </html>
